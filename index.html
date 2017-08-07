@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clock</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url("1000.jpg");
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .clock {
+      width: 12vw;
+      height: 12vw;
+      border-radius: 50%;
+      border: 20px solid #fff;
+      position: relative;
+    }
+
+    .hand {
+      position: absolute;
+      height: 6px;
+      width:50%;
+      background-color: #000;
+      top:50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.08, 2.85, 0.25, 1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="clock">
+    <div class="hand hour-hand"></div>
+    <div class="hand minute-hand"></div>
+    <div class="hand second-hand"></div>
+  </div>
+
+  <script>
+    const secondHand = document.querySelector('.second-hand');
+    const minuteHand = document.querySelector(".minute-hand");
+    const hourHand = document.querySelector(".hour-hand");
+
+    function setDate(){
+      const now = new Date();
+
+      const seconds = now.getSeconds();
+      const secondsDeg = ((seconds/ 60) * 360)+90;
+      secondHand.style.transform = `rotate(${secondsDeg}deg)`;
+      console.log(seconds);
+
+      const minutes = now.getMinutes();
+      const minutesDeg = ((minutes/60)*360)+90;
+      minuteHand.style.transform = `rotate(${minutesDeg}deg)`;
+      console.log(minutes);
+
+      const hours = now.getHours();
+      const hoursDeg = ((hours/60)*360)+90;
+      hourHand.style.transform = `rotate(${hoursDeg}deg)`;
+      console.log(hours);
+
+    }
+
+    setInterval(setDate, 1000);
+
+  </script>
+
+</body>
+</html>
